@@ -1,0 +1,23 @@
+{% extends 'personal_account/base.html' %}
+
+{% block content %}
+<div class="card text-center">
+  <div class="card-header">
+    Данные личного кабинета
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item"> <strong>Имя </strong> {{ user.username }}</li>
+    <li class="list-group-item"><strong>Возраст</strong> {{ user.age }}</li>
+    <li class="list-group-item"><strong>Контактные данные</strong> {{ user.contact_information }}</li>
+    <li class="list-group-item"><strong>опыт</strong> {{ user.experience }}</li>
+    <li class="list-group-item"><strong>Статус</strong> {{ user.status }}</li>
+  </ul>
+    <a href="#" class="btn btn-primary">Перейти куда-нибудь</a>
+  </div>
+  <div class="card-footer text-muted">
+    Зарегистрирован с {{ user.date_joined }}
+  </div>
+</div>
+
+{% endblock  %}

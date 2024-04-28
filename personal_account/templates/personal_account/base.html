@@ -1,0 +1,89 @@
+{% load static %}
+{% load common_tags %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link type="text/css" href="{% static 'personal_account/css/style.css' %}" rel="stylesheet" />
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+   <div class="container  ">
+        <div class="row p-2 " id="header">
+            <div class="col-1" id ='logo'>
+                <img src="{% static 'personal_account/img/log.jpg' %}" id="log" >
+            </div>
+
+            <div class="col-6 align-self-center" id ='search-input'>
+                <input type="search" class="form-control" id="inputsearch" placeholder="Поиск">
+            </div>
+
+            <div class="col align-self-center" id ='search-button'>
+                <button type="submit" class="btn btn-primary " >Поиск</button>
+            </div>
+
+            <div class="col-3 align-self-center " id ='login'>
+
+                {% if not user.is_authenticated %}
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalin">Вход</button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Регистрация</button>
+               {% else %}
+                    Привет {{ user.username }}
+                     <form  action="{% url 'logout' %}" method="post">
+                     {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Выйти</button>
+                     </form>
+                {% endif %}
+            </div>
+{#            {% block header %}#}
+{#                123#}
+{#            {% endblock header %}#}
+        </div>
+
+       <div class="row navigation">
+           <nav class="navbar bg-body-tertiary ">
+               <form class="container-fluid justify-content-start">
+                   <a href="{% url 'acc' %}" class="btn btn-outline-success btn-lg me-3 " aria-current="page">Главная</a>
+                   <a href="{% url 'customers' %}" class="btn btn-outline-success btn-lg me-3 " aria-current="page">Заказчики</a>
+                   <a href="{% url 'executor' %}" class="btn btn-outline-success btn-lg me-3 " aria-current="page">Исполнители</a>
+                   <a href="{% url 'comment' %}" class="btn btn-outline-success btn-lg me-3 " aria-current="page">Обратная связь</a>
+
+                   {% if  user.is_authenticated %}
+                       {% if user.status == 'Заказчик' %}
+                   <a href="{% url 'personalaccount' %}" class="btn btn-outline-success btn-lg me-3 " aria-current="page">Личный кабинет Заказчика</a>
+                        {% else %}
+                           <a href="{% url 'personalaccount1' %}" class="btn btn-outline-success btn-lg me-3 " aria-current="page">Личный кабинет Исполнителя</a>
+                        {% endif %}
+
+                       {% endif %}
+               </form>
+           </nav>
+{#            {% block menu %}#}
+{##}
+{#            {% endblock menu %}#}
+        </div>
+
+       <div class="row content">
+
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+<div class="container  fixed-bottom  ">
+       <div class="row justify-content-center footer p-2 " >
+            © 2024  Все права защищены. Перепечатка и любое использование материалов возможно только при наличии ссылки на первоисточник.
+{#            {% block footer %}#}
+{##}
+{#            {% endblock footer %}#}
+        </div>
+</div>
+   </div>
+   {% show_modal_reg %}
+   {% show_modal_in %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+

@@ -1,0 +1,12 @@
+#header{
+    /*background-color: red;*/
+}
+#log{
+    height: 45px;
+}
+
+.footer{
+    background-color: black;
+    height: 5vh;
+    color: lightsteelblue;
+}

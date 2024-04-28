@@ -1,0 +1,22 @@
+<!-- Модальное окно -->
+<div class="modal fade" id="modalin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalin">Вход на сайт</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+        <form method="post" action="{% url 'logus' %}">
+      <div class="modal-body">
+          <div class="form-error">{{ form.non_field_errors }}</div>
+        {% csrf_token %}
+        {{ form.as_p }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>

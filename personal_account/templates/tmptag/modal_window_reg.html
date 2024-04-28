@@ -1,0 +1,35 @@
+<!-- Модальное окно -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Регистрация нового пользователя</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+          <h5>Все поля обязательны для заполнения</h5>
+          <form method="post" action="{% url 'register' %}">
+          <div class="form-check">
+  <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Исполнитель">
+  <label class="form-check-label"  for="flexRadioDefault1">
+    Я исполнитель
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Заказчик" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Я заказчик
+  </label>
+</div>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary">Регистрация</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
